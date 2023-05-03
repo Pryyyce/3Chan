@@ -1,0 +1,9 @@
+node_modules/
+assignment/
+pokeapi-react/
+.DS_Store
+*-assignment/
+pnpm-lock.yaml
+
+# Local Netlify folder
+.netlify
