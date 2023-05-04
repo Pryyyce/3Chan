@@ -16,8 +16,9 @@ export const Comment = mongoose.model('Comment', commentSchema);
 
 const threadSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.String,
-  title: mongoose.SchemaTypes.String,
+  title: {type: mongoose.SchemaTypes.String, default: 'Untitled'},
   contents: mongoose.SchemaTypes.String,
+  poster: { type: mongoose.SchemaTypes.String, default: 'Anonymous'},
   
   comments: [{
     type: mongoose.SchemaTypes.String,

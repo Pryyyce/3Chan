@@ -58,7 +58,7 @@ commentRouter.get('/:comment_id', async (req, res) => {
     res.send('Error: Internal server error');
   }
 });
-
+//Get /threads/:thread_id/comments/:comment_id/reply
 commentRouter.get('/:comment_id/reply', async (req, res) => {
   const thread_id = req.params.thread_id;
   const comment_id = req.params.comment_id;
