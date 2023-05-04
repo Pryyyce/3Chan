@@ -6,6 +6,15 @@
   .threadGrid {
     grid-template-columns: repeat(3, 149px); /* or just use 32px instead of theme('width-8') like grid-template-columns: repeat(4, 32px) */
     
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 1.5px #5071B4;
+  }
+  .font-outline-3 {
+    -webkit-text-stroke: 1px #374F80;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px black;
   }}
 body {
   background-color: '#111827',;

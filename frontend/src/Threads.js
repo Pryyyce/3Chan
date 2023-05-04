@@ -1,6 +1,6 @@
 //holds all the threads
 import {useEffect,useState} from 'react';
-import {link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export  function Threads() {
  const [threads, setThreads] = useState([]);
@@ -14,23 +14,46 @@ export  function Threads() {
     });   
     return (
         <>
+              <div>
+            <div className="container mx-auto bg-bGround max-w-lg  shadow border p-4 m-5 border-none">
+                <div className='flex justify-between'>
+                    <img src={require('./3Clogo.png')} width="50" height="50"/>
+                    <h1 className="text-darkText text-center m-3 text-xl"> Welcome to 3Chan! </h1>
+                    <img src={require('./3Clogo.png')} width="50" height="50"/>
+                </div>
+            </div>
+
+            <div className="flex space-around container mx-auto max-w-[400px] m-5">
+                <div className="container mx-auto bg-bGround max-w-[150px] text-darkText text-center">
+                    <Link className="text-center" to="/"> Hide Threads</Link>
+                </div>
+
+                <div className="container mx-auto bg-bGround max-w-[150px] text-darkText text-center">
+                    <Link className="text-center" to="/newThread"> New Thread</Link>
+                </div>
+
+            </div>
+    
+        </div>
         <div className='max-w-lg mx-auto shadow bg-bGround'>
             <div className='grid threadGrid gap-4 py-4 px-3' >
                 { threads.map((thread) => (
+                    <Link to={`${thread._id}`}>
                     <div key={thread._id} className='container border-double border-2 border-darkText  text-center  bg-baseObj p-1 mx-1'>
                         <h1 className='text-[10px] text-lightText'>
                             {thread.poster}:posted
                         </h1>
-                        <div className='container bg-bGround mx-auto max-w-[100px] p-1 m-2'>
+                        <div className='container bg-bGround mx-auto  max-w-[100px] p-1 m-2'>
                        <img src={require('./3Clogo.png')} width="100" height="50" className='mx-auto'/>
                        </div>
                         <h1 className='text-[10px] text-darkText'>
                             {thread.title}
                         </h1>
                     </div>
+                    </Link>
            )) }
            </div>
         </div>
         </>
     );
-}
+} 

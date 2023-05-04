@@ -8,8 +8,9 @@ const commentSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.String,
   contents: mongoose.SchemaTypes.String,
   commenterName: mongoose.SchemaTypes.String,
+  replyToId: mongoose.SchemaTypes.String,
   thread_id: mongoose.SchemaTypes.String,
-  replyToId: mongoose.SchemaTypes.String
+  
 });
 
 export const Comment = mongoose.model('Comment', commentSchema);

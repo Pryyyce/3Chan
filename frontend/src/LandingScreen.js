@@ -1,4 +1,4 @@
-import {link, Outlet} from 'react-router-dom';
+import {Link, Outlet} from 'react-router-dom';
 import {Threads} from './Threads';
 
 //homePage
@@ -13,9 +13,15 @@ export function LandingScreen() {
                     <img src={require('./3Clogo.png')} width="50" height="50"/>
                 </div>
             </div>
-            
-            <div>
-                <Threads></Threads>
+            <div className="flex space-around container mx-auto max-w-[400px]">
+                <div className="container mx-auto bg-bGround max-w-[150px] text-darkText text-center">
+                    <Link className="text-center" to="/threads"> Show Threads</Link>
+                </div>
+
+                <div className="container mx-auto bg-bGround max-w-[150px] text-darkText text-center">
+                    <Link className="text-center" to="/newThread"> New Thread</Link>
+                </div>
+
             </div>
             <Outlet />
         </div>
