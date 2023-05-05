@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import { Thread } from "./util.js";
 import commentRouter from "./Comment.js";
 
-// multer setup (included in this file cause middleware is gay(er than me even))
-const multer = require("multer");
+// multer setup (why in this file??? cause multer is gay(er than me even))
+import multer from "multer";
 // multer options to parse image files and store them in memory
 const storage = multer.memoryStorage();
 const uploader = multer({ storage: storage });
@@ -60,11 +60,11 @@ ThreadRouter.post("/", uploader.single("file"), async (req, res) => {
   const requestBody = req.body;
   requestBody._id = uuidv4();
   requestBody.comments = [];
-  // object to hold uploaded image
-  requestBody.file = {
-    data: req.file.buffer, // raw binary image data
-    contentType: req.file.mimetype, // binary encoding type (png, jpeg, etc.)
-  };
+  // stuff to hold uploaded image
+  requestBody.data = req.file.buffer;
+  requestBody.contentType = req.file.mimetype;
+
+  console.log(req.file);
 
   try {
     const thread = await new Thread(requestBody).save();

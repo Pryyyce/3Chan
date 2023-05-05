@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const commentSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.String,
@@ -24,10 +24,11 @@ const threadSchema = new mongoose.Schema({
     },
   ],
 
-  image: {
-    data: Buffer,
-    contentType: String,
-  },
+  random: { type: mongoose.SchemaTypes.String, default: "This is a test" },
+
+  // this is dumb and stupid and dumb wowee
+  data: mongoose.SchemaTypes.Buffer,
+  contentType: mongoose.SchemaTypes.String,
 });
 
 export const Thread = mongoose.model("Thread", threadSchema);
