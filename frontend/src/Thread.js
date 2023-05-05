@@ -64,7 +64,7 @@ export function Thread() {
       setComments(data);
     }
     getThreadComments();
-  });
+  }, []);
   return (
     <>
       <div className="max-w-lg bg-bGround mx-auto my-5 py-3">

@@ -11,7 +11,7 @@ export function Threads() {
       setThreads(data);
     }
     getThreads();
-  });
+  }, []);
 
   function getImage(thread) {
     if (thread.data) {
