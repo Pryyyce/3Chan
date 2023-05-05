@@ -13,7 +13,12 @@ export function Threads() {
     getThreads();
   }, []);
 
-  function getImage(thread) {
+  function getThreadImage(thread) {
+
+    if (!thread) {
+      return <></>;
+    }
+  
     if (thread.data) {
       const base64String = btoa(
         String.fromCharCode(...new Uint8Array(thread.data.data))
@@ -83,7 +88,7 @@ export function Threads() {
                   {thread.poster}:posted
                 </h1>
                 <div className="container bg-bGround mx-auto  max-w-[100px] p-1 m-2">
-                  {getImage(thread)}
+                  {getThreadImage(thread)}
                 </div>
                 <h1 className="text-[10px] text-darkText">{thread.title}</h1>
               </div>

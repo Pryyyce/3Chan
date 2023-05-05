@@ -111,7 +111,6 @@ export function Thread() {
               </div>
             )}
             <div className="text-left px-3  font-outline-2">
-              ->
               {comment.commenterName}
             </div>
             <div className="text-left mx-2 p-3 text-darkText">
