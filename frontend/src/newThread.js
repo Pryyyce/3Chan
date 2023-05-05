@@ -160,6 +160,9 @@ export function NewThread() {
 
     var imagedata = document.querySelector('input[type="file"]').files[0];
 
+    // make sure something gets sent, even if user didn't upload anything
+    // if (typeof imagedata === "undefined") imagedata = require("./3Clogo.png");
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("contents", contents);

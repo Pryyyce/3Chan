@@ -24,11 +24,9 @@ const threadSchema = new mongoose.Schema({
     },
   ],
 
-  random: { type: mongoose.SchemaTypes.String, default: "This is a test" },
-
   // this is dumb and stupid and dumb wowee
   data: mongoose.SchemaTypes.Buffer,
-  contentType: mongoose.SchemaTypes.String,
+  contentType: { type: mongoose.SchemaTypes.String, default: "image/png" },
 });
 
 export const Thread = mongoose.model("Thread", threadSchema);

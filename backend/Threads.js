@@ -22,7 +22,7 @@ ThreadRouter.get("/:thread_id", async (req, res) => {
   const thread_id = req.params.thread_id;
   try {
     const thread = await Thread.findOne({ _id: thread_id });
-    console.log(thread);
+    //console.log(thread);
     if (thread === null) {
       res.status(404);
       res.json({
@@ -33,7 +33,7 @@ ThreadRouter.get("/:thread_id", async (req, res) => {
     }
     res.json(thread);
   } catch (event) {
-    console.log(event);
+    //console.log(event);
     res.status(500);
     res.send("Error: Internal server error");
   }
@@ -61,8 +61,14 @@ ThreadRouter.post("/", uploader.single("file"), async (req, res) => {
   requestBody._id = uuidv4();
   requestBody.comments = [];
   // stuff to hold uploaded image
-  requestBody.data = req.file.buffer;
-  requestBody.contentType = req.file.mimetype;
+  if (req.file) {
+    // only read data if an image was sent
+    requestBody.data = req.file.buffer;
+    requestBody.contentType = req.file.mimetype;
+  } else {
+    requestBody.data = undefined;
+    requestBody.contentType = "image/png";
+  }
 
   console.log(req.file);
 
