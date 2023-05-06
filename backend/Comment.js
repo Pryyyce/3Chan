@@ -97,7 +97,8 @@ commentRouter.get('/:comment_id/reply', async (req, res) => {
 commentRouter.post("/", async (req, res) => {
   const requestBody = req.body;
   const thread_id = req.params.thread_id;
-  requestBody._id = uuidv4();
+  
+  requestBody._id = requestBody._id;
   requestBody.thread_id = thread_id;
   requestBody.contents = requestBody.contents;
   requestBody.commenterName = requestBody.commenterName; // Limit to 2 decimal places, great for prices

@@ -7,7 +7,7 @@ import commentRouter from "./Comment.js";
 import multer from "multer";
 // multer options to parse image files and store them in memory
 const storage = multer.memoryStorage();
-const uploader = multer({ storage: storage });
+const uploader = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 }});
 
 const ThreadRouter = Router();
 

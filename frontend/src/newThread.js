@@ -1,75 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
-export function NewComment() {
-  const [contents, setContents] = useState("Hello world!");
-  const [commenterName, setCommenterName] = useState("Anonymous");
-  const [isSubmitted, setIsSubmitted] = useState(false); // [isSubmitted, setIsSubmitted
-  const [isPending, setIsPending] = useState(false);
-  const thread_id = useParams().threadId;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const comment = { contents, commenterName };
-    setIsPending(true);
-    fetch(`http://localhost:3001/threads/${thread_id}/comments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(comment),
-    }).then(() => {
-      console.log("new comment added");
-
-      setIsSubmitted(true);
-    });
-  };
-  return (
-    <div className="container mx-auto bg-bGround max-w-lg  shadow border p-4 m-5 border-none text-center">
-      <form
-        className="bg-baseObj m-2 border-double border-2 border-darkText mx-auto my-7 max-w-[500px] "
-        onSubmit={handleSubmit}
-      >
-        <label className="text-lightText text-center font-bold p-2 ">Alias</label>
-        <br></br>
-        <textarea
-          type="text"
-          rows="1"
-          className="m-3 rounded-lg border-2 border-darkText bg-baseObj  min-w-[350px] max-w-[400px] text-lightText text-center p-2"
-          value={commenterName}
-          defaultValue={"Anonymous"}
-          onChange={(e) => setCommenterName(e.target.value)}
-          required
-        />
-        <br></br>
-        <label className="text-lightText text-center font-bold p-2">Body</label>
-        <br></br>
-        <textarea
-          type="text"
-          rows="2"
-          className="m-3  rounded-lg border-2 border-darkText bg-baseObj min-w-[350px] max-w-[400px] text-lightText text-center p-2"
-          value={contents}
-          defaultValue={"Hello World!"}
-          onChange={(e) => setContents(e.target.value)}
-          required
-        />
-        <br></br>
-        {!isPending && (
-          <button className="bg-baseObj text-lightText text-center m-3 p-2 rounded-lg border-2 border-darkText">
-            Submit
-          </button>
-        )}
-        {isSubmitted && (
-          <Link to="..">
-            <button className="bg-baseObj text-lightText text-center m-3 p-2 rounded-lg border-2 border-darkText">
-              Back
-            </button>
-          </Link>
-        )}
-      </form>
-    </div>
-  );
-}
-
-export function NewReply() {
+export function NewReply(props) {
   const [contents, setContents] = useState("Anonymous");
   const [commenterName, setCommenterName] = useState("Hello World!");
   const [isSubmitted, setIsSubmitted] = useState(false); // [isSubmitted, setIsSubmitted
@@ -77,10 +11,15 @@ export function NewReply() {
   const [replyToId, setReplyToId] = useState(""); // [comment, setComment
   const { threadId, commentId } = useParams([]);
 
+  // props stuff
+  const comments = props.comments;
+  const setComments = props.setComments;
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const comment = { contents, commenterName, replyToId };
+    const _id = uuidv4();
+    const comment = { contents, commenterName, replyToId, _id};
     setIsPending(true);
     fetch(`http://localhost:3001/threads/${threadId}/comments`, {
       method: "POST",
@@ -88,7 +27,7 @@ export function NewReply() {
       body: JSON.stringify(comment),
     }).then(() => {
       console.log("new comment added");
-
+      setComments([...comments, comment]);
       setIsSubmitted(true);
     });
   };
@@ -114,7 +53,6 @@ export function NewReply() {
           rows="1"
           className="m-3 rounded-lg border-2 border-darkText bg-baseObj  min-w-[350px] max-w-[400px] text-lightText text-center p-2"
           value={commenterName}
-          defaultValue={"Anonymous"}
           onChange={(e) => setCommenterName(e.target.value)}
           required
         />
@@ -126,7 +64,6 @@ export function NewReply() {
           rows="2"
           className="m-3  rounded-lg border-2 border-darkText bg-baseObj min-w-[350px] max-w-[400px] text-lightText text-center p-2"
           value={contents}
-          defaultValue={"Hello World!"}
           onChange={(e) => setContents(e.target.value)}
           required
         />
@@ -214,7 +151,6 @@ export function NewThread() {
           rows="3"
           className=" rounded-lg m-3 border-2 border-darkText bg-baseObj text-lightText text-center p-2"
           value={title}
-          defaultValue={"Untitled"}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
@@ -232,7 +168,6 @@ export function NewThread() {
           rows="1"
           className="m-3  rounded-lg border-2 border-darkText bg-baseObj text-lightText text-center p-2"
           value={poster}
-          defaultValue={"Anonymous"}
           onChange={(e) => setPoster(e.target.value)}
           required
         />
@@ -244,7 +179,6 @@ export function NewThread() {
           rows="11"
           className="m-3  rounded-lg border-2 border-darkText bg-baseObj text-lightText text-center p-2"
           value={contents}
-          defaultValue={"Hello World!"}
           onChange={(e) => setContents(e.target.value)}
           required
         />

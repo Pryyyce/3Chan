@@ -15,6 +15,7 @@
     "prettier": "^2.8.8"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongodb": "^5.1.0",

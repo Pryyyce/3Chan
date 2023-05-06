@@ -1,6 +1,7 @@
 //holds all the threads
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Buffer } from 'buffer';
 
 export function Threads() {
   const [threads, setThreads] = useState([]);
@@ -14,15 +15,14 @@ export function Threads() {
   }, []);
 
   function getThreadImage(thread) {
+    console.log("getThreadImage called with arguments:", thread);
 
     if (!thread) {
       return <></>;
     }
   
     if (thread.data) {
-      const base64String = btoa(
-        String.fromCharCode(...new Uint8Array(thread.data.data))
-      );
+      const base64String = Buffer.from(thread.data.data).toString("base64");
 
       return (
         <img

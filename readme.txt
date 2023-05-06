@@ -1,19 +1,11 @@
-This is the readme!
+3Chan
+Members: Pryce Poole, Daniel Valencia, Vincent Marias
 
-This REPO contains 2 main areas 
+Q: Were there areas of unexpected complexity? If so, how did you handle them or how did you decide to cut scope?
+A: We had to cut down on authentication due to time constraints. We managed to get images working, thankfully!
 
-Backend contains these routes~ 
+Q: What was the most interesting part of the final project?
+A: Getting images stored in MongoDB and decoded using buffers was pretty neat.
 
-ckend API Routes
-<Thread>
-	<Comment>
-		{Comment ID}
-		{Comment’s user if user is logged in}
-		{Comment Image (Optional, can be null)}
-		{Comment text}
-		<Replies>
-		</Replies>
-	</Comment>
-<Thread>
-
-
+Q: If you had more time, what do you wish you could have added to the final project?
+A: Optional images for each reply would have probably been the next step for this project.
