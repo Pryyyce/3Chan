@@ -79,20 +79,22 @@ export function Threads() {
       <div className="max-w-lg mx-auto shadow bg-bGround">
         <div className="grid threadGrid gap-4 py-4 px-3">
           {threads.map((thread) => (
+            <div key={thread._id}>
             <Link to={`${thread._id}`}>
               <div
                 key={thread._id}
-                className="container border-double border-2 border-darkText  text-center  bg-baseObj p-1 mx-1"
+                className="container border-double border-2 border-darkText min-h-[150px] text-center  bg-baseObj p-1 mx-1"
               >
                 <h1 className="text-[10px] text-lightText">
                   {thread.poster}:posted
                 </h1>
-                <div className="container bg-bGround mx-auto  max-w-[100px] p-1 m-2">
+                <div className="container bg-bGround mx-auto   max-w-[100px] p-1 m-2">
                   {getThreadImage(thread)}
                 </div>
                 <h1 className="text-[10px] text-darkText">{thread.title}</h1>
               </div>
             </Link>
+            </div>
           ))}
         </div>
       </div>

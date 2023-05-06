@@ -64,7 +64,7 @@ export function Thread() {
       setComments(data);
     }
     getThreadComments();
-  }, []);
+  });
   return (
     <>
       <div className="max-w-lg bg-bGround mx-auto my-5 py-3">
@@ -78,7 +78,7 @@ export function Thread() {
 
         <div>{getImage()}</div>
 
-        <div className="p-2  m-3 my-2 text-center text-[10px] text-darkText bg-baseObj">
+        <div className="p-2  m-3 my-2 text-center text-[17px] text-darkText bg-baseObj">
           {thread.contents}
         </div>
       </div>
